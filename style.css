@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.card-container {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px; /* Enables 3D effect */
+    cursor: pointer;
+}
+
+#card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Keeps front and inside separate */
+}
+
+#card-front, #card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Prevents mirroring */
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+#card-front {
+    transform: rotateY(0deg);
+}
+
+#card-inside {
+    transform: rotateY(180deg); /* Ensures the inside is hidden until flip */
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        width: 600px;
+        height: 800px;
+    }
+}
