@@ -20,6 +20,10 @@ body {
     transform-style: preserve-3d; /* Keeps front and inside separate */
 }
 
+#card-front:hover, #card-inside:hover {
+    box-shadow: 20px 40px 60px rgb(190, 190, 190);
+}
+
 #card-front, #card-inside {
     position: absolute;
     width: 100%;
