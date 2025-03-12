@@ -2,11 +2,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background-color: #f8f8f8;
 }
 
 .card-container {
+    margin-top: 40px;
     width: 300px;
     height: 400px;
     perspective: 1000px; /* Enables 3D effect */
@@ -45,6 +45,20 @@ img {
 }
 
 @media (min-width: 768px) {
+    .card-container {
+        width: 400px;
+        height: 550px;
+    }
+}
+
+@media (min-width: 996) {
+    .card-container {
+        width: 500px;
+        height: 650px;
+    }
+}
+
+@media (min-width: 1200) {
     .card-container {
         width: 600px;
         height: 800px;
