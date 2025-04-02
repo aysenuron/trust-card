@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Trust Card</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+    .card-container {
+    margin: 40px auto;
+    width: 80vw;
+    height: auto;
+    perspective: 1000px; /* Enables 3D effect */
+    cursor: pointer;
+}
+
+#card {
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* Keeps front and inside separate */
+}
+
+#card-front, #card-inside {
+    position: absolute;
+    top: 0;
+    left: -50;
+    width: 100%;
+    backface-visibility: hidden; /* Prevents mirroring */
+    box-shadow: 20px 40px 60px rgb(220, 241, 255);
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#card-front {
+    transform: rotateY(0deg);
+}
+
+#card-inside {
+    transform: rotateY(180deg); /* Ensures the inside is hidden until flip */
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        width: 30vw;
+    }
+}
+
+@media (min-width: 1440) {
+    .card-container {
+        width: 50vw;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="card-container">
@@ -19,6 +66,42 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const card = document.getElementById("card");
+
+        let isFlipped = false;
+
+                // Hover Effect with GSAP
+                card.addEventListener("mouseenter", () => {
+            if (!isFlipped) {
+                gsap.to(card, { 
+                    rotateY: -8, 
+                    scale: 1.1,
+                    duration: 0.4,
+                    boxShadow: "0 0 15px rgba(0, 0, 0, 0.8)"
+                });
+            }
+        });
+
+        card.addEventListener("mouseleave", () => {
+            if (!isFlipped) {
+                gsap.to(card, { 
+                    rotateY: 0, 
+                    scale: 1,
+                    duration: 0.3,
+                    boxShadow: "20px 40px 60px rgb(190, 190, 190)"
+                });
+            }
+        });
+
+        card.addEventListener("click", () => {
+            isFlipped = !isFlipped;
+            gsap.to(card, { 
+                rotateY: isFlipped ? 180 : 0, 
+                duration: 1.2, 
+                ease: "elastic.out(1, 0.8)" // Bouncy easing with defined strength
+            });
+        });
+    </script>
 </body>
 </html>
